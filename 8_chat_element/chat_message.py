@@ -1,15 +1,11 @@
-# https://docs.streamlit.io/library/api-reference/chat/st.chat_input
+# https://docs.streamlit.io/library/api-reference/chat/st.chat_message
 
 import streamlit as st
+import numpy as np
 
-prompt = st.chat_input("Say something")
+message = st.chat_message("assistant")
+message.write("Hello human")
+message.bar_chart(np.random.randn(30, 3))
 
-if 'data' not in st.session_state:
-    st.session_state.data  = []
-
-if prompt:
-    st.session_state.data.append(prompt)
-    for text in st.session_state.data:
-        st.write(f"User has sent the following prompt: {text}")
-
-st.write(st.session_state.data)
+message1 = st.chat_message("user")
+message1.write("Thanks")
